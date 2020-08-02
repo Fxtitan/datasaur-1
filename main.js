@@ -1,13 +1,135 @@
 /********************
  * HELPER FUNCTIONS *
  ********************/
+const makeDino = (newSpecies, newPeriod, newDiet, newExtinct = false) => {
+
+  const newDino = {
+    species: newSpecies,
+    period: newPeriod,
+    carnivore: newDiet,
+    extinct: newExtinct,
+  }
+
+  return newDino
+
+}
+
+const makeSingular = (dino) => {
+  if (dino.species.endsWith('us')){
+    empty = dino.species.slice(0, -2);
+  }else {
+    empty = dino.species;
+  }
+  const newSpecies = {
+    species: empty,
+    period: dino.period,
+    carnivore: dino.carnivore,
+    extinct: dino.extinct,
+  }
+  return  newSpecies
+}
+
+const truncateSpecies = (dinoObj) => {
+  let same = "";
+if(dinoObj.species.length > 8){
+same = dinoObj.species.slice(0, 7) + "...";
+}else {
+  same = dinoObj.species
+  
+} 
+    
+    let newDino = {
+      species: same,
+      period: dinoObj.period,
+      carnivore: dinoObj.carnivore,
+      extinct: dinoObj.extinct,
+    }
+    return newDino
+
+}
+
+const truncateDinos = (dinos) => {
+  return dinos.map(truncateSpecies)
+}
+
+const makeAllExtinct = (dinos) => {
+  let newDenos = [...dinos]
+  return newDenos.filter(make)
+}
+
+const singularizeDinos = (dinos) => {
+  return dinos.map(makeSingular)
+}
+
+
+
+
+
+
+
+/***********************
+ * IS FUNCTIONS *
+ **********************/
+const isHerbavore = (them) => {
+  return (them.carnivore === false)
+  }
+
+const isCarnivore = (dino) => {
+  return dino.carnivore
+}
+
+const isExtinct = (anotherParam) => {
+  return anotherParam.extinct
+}
+
+const isTriassic = (givenDino) => {
+  return givenDino.period === 'Triassic'
+}
+const isJurassic = (givenDino) => {
+  return givenDino.period === 'Jurassic'
+}
+
+const isCretaceous = (givenDino) => {
+  return givenDino.period === 'Cretaceous'
+}
+
 
 
 
 /***********************
  * ITERATION FUNCTIONS *
  **********************/
+// const singularizeDinos = (dinos) => {
+//   const newDinos = dinos.map(makeSingular)}
 
+const carnivoresOnly = (deno) => {
+  return deno.filter(isCarnivore)
+}
+
+const herbivoresOnly = (deno) => {
+  return deno.filter(isHerbavore)
+}
+
+const makeExtinct = (deno) => {
+  const newDino = makeDino(deno.species, deno.period, deno.carnivore, deno.extinct = true)
+  return newDino
+}
+
+const extinctOnly = (extinctDinos) => {
+  return extinctDinos.filter(isExtinct)
+}
+
+const notExtinct = () => {
+  
+}
+
+const triassicOnly = (deno) => {
+  return deno.filter(isTriassic)
+}
+
+const notTriassic = () => {
+  
+}
 
 
 /*********************************
